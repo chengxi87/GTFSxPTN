@@ -1,0 +1,11 @@
+# Windows default autosave extension
+*.asv
+
+# mat files
+*.mat
+
+/GUI/*
+/_archives/*
+/example_denhaag_201503
+
+*.txt
