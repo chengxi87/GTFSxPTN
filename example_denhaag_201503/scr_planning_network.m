@@ -9,6 +9,6 @@ addpath([pwd,'\outputs'])
 OPTN = load('denhaag_operation_tramnetwork.mat');
 
 %%
-stopMergingPara = 8;
+stopMergingPara = 7;
 [Stops,Links,Routes] = buildPlanningNetwork(OPTN,stopMergingPara);
     

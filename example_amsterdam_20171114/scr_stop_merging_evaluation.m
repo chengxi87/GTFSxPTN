@@ -7,13 +7,19 @@ addpath(str_temp);
 % load the network
 OPTN = load('ams_operation_tramnetwork.mat'); % operation PTN
 
-%% Stops
-plotSwtich = 1;
-alpha = 8; % stop clusters within top percentile of distance will be merged 
-[Stops,StopIdxTable] = mergeOperationStops(OPTN,alpha,1);
-
-%% Links
-[Links,LinkIdxTable] = buildPlanningLinks(OPTN,StopIdxTable);
-%% Routes
-Routes = buildPlanningRoutes(OPTN,StopIdxTable,LinkIdxTable);
+% nStops = length(StopsUpdate);
+% D = zeros(nStops,nStops);
+% for i = 1:nStops-1
+%     for j = i+1:nStops
+%         if ~isempty(intersect(LrUpdate{i},LrUpdate{j}))
+%             D(i,j) = inf;
+%         else
+%             D(i,j) = pdist2([StopsUpdate(i).x,StopsUpdate(i).y],[StopsUpdate(j).x,StopsUpdate(j).y]);
+%         end
+%     end
+% end
+% 
+% B = sort(D(D~=inf&D~=0));
+% theta = 0.0017;
+% A = createStepTwoAdj(StopsUpdate,D,theta);
 
