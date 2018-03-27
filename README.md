@@ -2,8 +2,11 @@
 
 ``GTFS2PTN`` is a Matlab package for systematically and consistently constructing usable graph representations using the [General Transit Feed Specification (GTFS)](https://developers.google.com/transit/gtfs/) that are suitable for research and education on public transport network, such as topological and spatial analyses.
 
-## Core Functionalities
-* loadGTFS: Load necessary fields from the raw GTFS data into Matlab as a series of tables. The output is used for subsequent functionalitis.
+## Feature
+
+## Documentation
+* `loadGTFS`: Load necessary fields from the raw GTFS data into Matlab as a series of tables. The output is used for subsequent functionalitis.
+* buildOperationNetwork: 
 
 ## Examples
 ### Amsterdam
