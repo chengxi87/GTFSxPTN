@@ -6,7 +6,7 @@
 
 ## Documentation
 * `loadGTFS`: Load necessary fields from the raw GTFS data into Matlab as a series of tables. The output is used for subsequent functionalitis.
-* buildOperationNetwork: 
+* `buildOperationNetwork`: Build the operation PTN based on the brute-force approach. The input takes the loaded GTFS data from `loadGTFS`, a selected date and a list of route types needed (in line with GTFS, 0-tram, 1-metro, 3-bus).
 
 ## Examples
 ### Amsterdam
