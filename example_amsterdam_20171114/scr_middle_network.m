@@ -7,10 +7,12 @@ addpath(str_temp);
 addpath([pwd '\outputs']);
 
 % load the network
-OPTN = load('ams_operation_tramnetwork.mat'); % operation PTN
+BPTN = load('ams_bottom_tramnetwork.mat'); % bottom scale
 
-theta = 0.0017;
-[Stops,Links,Routes,StopIdxTable,LinkIdxTable] = buildPlanningNetwork(OPTN,theta);
+theta = 0.0015;
+[Stops,Links,Routes,StopIdxTable,LinkIdxTable] = buildMiddleScalePTN(BPTN,theta);
+
+
 
 
 

@@ -33,8 +33,8 @@ for iTable = 1:length(gtfsTables)
     disp([tableName ' loaded...']);
 end
 % save data
-save(gtfsFileName,'gtfsTables');
-disp(['GTFS data has been loaded and saved as ' gtfsFileName]);
+% save(gtfsFileName,'gtfsTables','-v7.3');
+% disp(['GTFS data has been loaded and saved as ' gtfsFileName]);
 
 end
 

@@ -1,4 +1,4 @@
-function [Routes,Stops,Links] = buildOperationNetwork(gtfsTables,date,routeTypeList)
+function [Routes,Stops,Links] = buildBottomScalePTN(gtfsTables,date,routeTypeList)
 % add path to the _lib
 str=pwd;
 index_dir=findstr(pwd,'\');

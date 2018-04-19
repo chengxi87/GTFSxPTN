@@ -3,9 +3,11 @@
 
 # mat files
 *.mat
+# txt files
+*.txt
 
-/GUI/*
+# folders
 /_archives/*
 /example_denhaag_201503
-
-*.txt
+/_paper_results/*
+/example_mel_201804

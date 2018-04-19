@@ -1,5 +1,8 @@
 function plotNetworkNoGeo(Links,Stops)
 
+linkcolor = [0 0.447058826684952 0.74117648601532];
+nodecolor = [0.0784313753247261 0.168627455830574 0.549019634723663];
+
 % define the best scale of graph
 nb = max([Stops.y]);
 sb = min([Stops.y]);
@@ -16,12 +19,21 @@ for iLink = 1:nLinks
     dX = Stops(findRowID(dStop,Stops)).x;
     dY = Stops(findRowID(dStop,Stops)).y; 
     
-    plot([oX dX],[oY dY],'-','Color',[.3 .3 .3]);
+    plot([oX dX],[oY dY],'-','Color',linkcolor);
     hold on;
 end
 
-x = [Stops.x];y = [Stops.y];
-scatter(x,y,5,'r','filled');
+for i = 1:length(Stops)
+    curX = Stops(i).x;
+    curY = Stops(i).y;
+    plot(curX,curY,'o','MarkerSize',2,...
+        'MarkerFaceColor',nodecolor,...
+        'MarkerEdgeColor',nodecolor);
+    hold on;
+%     text(curX,curY,Stops(i).name,'FontSize',8);
+%     hold on;
+    
+end
 
 set(gca, ...
   'Box'         , 'on'     , ...

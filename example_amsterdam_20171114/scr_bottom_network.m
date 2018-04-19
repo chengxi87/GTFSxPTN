@@ -9,7 +9,6 @@ routeTypeList = [0]; % tram only
 date = '20171114';
 load('ams_gtfs_20171114.mat');
 
-[Routes,Stops,Links] = buildOperationNetwork(gtfsTables,date,routeTypeList);
-
-    
+[Routes,Stops,Links] = buildBottomScalePTN(gtfsTables,date,routeTypeList);
+  
     

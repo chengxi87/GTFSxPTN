@@ -1,15 +1,15 @@
-function [G,adj] = buildUnweightedLspaceGraph(PPTN)
+function [G,adj] = buildUnweightedLspaceGraph(PTN)
 
-nStops = length(PPTN.Stops);
+nStops = length(PTN.Stops);
 adj = zeros(nStops,nStops);
 
-for i = 1:length(PPTN.Links)
-    adj(PPTN.Links(i).oStop,PPTN.Links(i).dStop) = 1;
+for i = 1:length(PTN.Links)
+    adj(PTN.Links(i).oStop,PTN.Links(i).dStop) = 1;
 end
 G = digraph(adj,'OmitSelfLoops');
 
-G.Nodes.Names = {PPTN.Stops.name}';
-G.Nodes.x = [PPTN.Stops.x]';
-G.Nodes.y = [PPTN.Stops.y]';
+G.Nodes.Names = {PTN.Stops.name}';
+G.Nodes.x = [PTN.Stops.x]';
+G.Nodes.y = [PTN.Stops.y]';
 
 end
