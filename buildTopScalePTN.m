@@ -1,4 +1,4 @@
-function [TSStops,TSLinks,TSRoutes,LinkIdxTable] = buildTopScalePTN(MPTN)
+function [TSStops,TSLinks,TSRoutes,StopIdxTable,LinkIdxTable] = buildTopScalePTN(MPTN)
 
 [G,~] = buildUnweightedLspaceGraph(MPTN);
 
@@ -16,6 +16,7 @@ TSLinks = [];
 nTSstops = 0;
 nTSlinks = 0;
 LinkIdxTable = [];
+StopIdxTable = [];
 
 for i = 1:nRoutes
     oldStops = MPTN.Routes(i).stops;
@@ -62,6 +63,26 @@ for i = 1:nRoutes
     TSRoutes(i).stops = newStops;
     TSRoutes(i).links = newLinks;
 end
+
+% update stop id
+for j = 1:length(TSStops)
+    StopIdxTable(j).stopIdMS = TSStops(j).ID;
+    StopIdxTable(j).stopIdTS = j;
+    TSStops(j).ID = j;
+end
+
+for k = 1:length(TSLinks)
+    TSLinks(k).oStop = StopIdxTable(find([StopIdxTable.stopIdMS] == TSLinks(k).oStop)).stopIdTS;
+    TSLinks(k).dStop = StopIdxTable(find([StopIdxTable.stopIdMS] == TSLinks(k).dStop)).stopIdTS;
+end
+
+for k = 1:length(TSRoutes)
+    stops = TSRoutes(k).stops;
+    for m = 1:length(stops)
+        TSRoutes(k).stops(m) = StopIdxTable(find([StopIdxTable.stopIdMS] == stops(m))).stopIdTS;
+    end
+end
+
 end
 
 %%

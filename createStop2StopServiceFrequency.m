@@ -32,7 +32,8 @@ for lineID = lineIdList
                 end              
             end
         end
-    end      
+    end   
+    disp(['Line ',int2str(lineID), ' is completed...']);
 end % end line loop
 
 S = aggregateData(S);

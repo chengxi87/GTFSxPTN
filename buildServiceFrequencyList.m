@@ -1,11 +1,11 @@
-function serviceFrequencyList = buildServiceFrequencyList(PPTN,SF,hourlist)
+function serviceFrequencyList = buildServiceFrequencyList(MPTN,SF,hourlist)
 
-nLinks = length(PPTN.Links);
+nLinks = length(MPTN.Links);
 serviceFrequencyList = zeros(nLinks,1);
 for i = 1:nLinks
-    for childlink = PPTN.Links(i).childLinks
-        oStop = PPTN.LinkIdxTable([PPTN.LinkIdxTable.operationLinkID]==childlink).operationOStopID;
-        dStop = PPTN.LinkIdxTable([PPTN.LinkIdxTable.operationLinkID]==childlink).operationDStopID;
+    for childlink = MPTN.Links(i).childLinks
+        oStop = MPTN.LinkIdxTable([MPTN.LinkIdxTable.linkIdBS]==childlink).oStopIdBS;
+        dStop = MPTN.LinkIdxTable([MPTN.LinkIdxTable.linkIdBS]==childlink).dStopIdBS;
         
         row = find([SF.fromStopID] == oStop & [SF.toStopID] == dStop);
         for hour = hourlist

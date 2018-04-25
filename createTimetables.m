@@ -1,5 +1,10 @@
 function createTimetables()
 
+str=pwd;
+index_dir=findstr(str,'\');
+str_temp=str(1:index_dir(end)-1);
+addpath([str_temp,'\_lib']);
+
 %% Parameter setting
 % gtfs file path and name
 [filename,filepath]=uigetfile({'*.mat'},...

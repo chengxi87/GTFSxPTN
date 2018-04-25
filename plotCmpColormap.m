@@ -1,13 +1,16 @@
-function plotNodeColormap(Stops,Links,data,clm,titleText,colormapmat)
+function plotCmpColormap(Stops,Links,data,titleText)
+
 figure;
 X = [Stops.x];
 Y = [Stops.y];
 
 plotLinks(Stops,Links);
 
+colormapmat = cool;
+
 for i = 1:length(Stops)
-    val = data(i,clm);
-    perc = val/max(max(data));
+    val = data(i);
+    perc = (val-min(data))/(max(data)-min(data));
     row = round(perc * size(colormapmat,1));
     if row == 0
         row = 1;
@@ -20,7 +23,7 @@ end
 colormap(colormapmat);
 cb = colorbar('SouthOutside');
 set(cb,'position',[0.192,0.118,0.661,0.029],'FontName','Times New Roman','FontSize',8);
-caxis([min(min(data)) max(max(data))]);
+caxis([min(data) max(data)])
 
 title(titleText,'FontWeight','bold','FontName','Times New Roman','FontSize',9);
 
@@ -53,7 +56,7 @@ for i = 1:length(Links)
     oY = Stops(Links(i).oStop).y;
     dX = Stops(Links(i).dStop).x;
     dY = Stops(Links(i).dStop).y;
-    plot([oX dX],[oY dY],'-','Color','b');
+    plot([oX dX],[oY dY],'-','Color',[0.501960813999176 0.501960813999176 0.501960813999176]);
     hold on;
 end
 end

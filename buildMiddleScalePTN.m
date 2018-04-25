@@ -1,4 +1,4 @@
-function [Stops,Links,Routes,StopIdxTable,LinkIdxTable] = buildMiddleScalePTN(BSPTN,theta)
+function [Stops,Links,Routes,StopIdxTable,LinkIdxTable] = buildMiddleScalePTN(BSPTN,theta,mergeStopList)
 % add path to the _lib
 str=pwd;
 index_dir=findstr(pwd,'\');
@@ -8,7 +8,7 @@ addpath([str_temp,'\_lib\bottom2middle']);
 
 % Stops
 % theta is the parameter about distance threshold
-Stops = doStopMerging4BSPTN(BSPTN,theta);
+Stops = doStopMerging4BSPTN(BSPTN,theta,mergeStopList);
 % update stop IDs
 StopIdxTable = [];
 n = 0;

@@ -1,4 +1,4 @@
-function plotNetworkNoGeo(Links,Stops)
+function plotNetworkNoGeo(Links,Stops,textOn)
 
 linkcolor = [0 0.447058826684952 0.74117648601532];
 nodecolor = [0.0784313753247261 0.168627455830574 0.549019634723663];
@@ -26,13 +26,14 @@ end
 for i = 1:length(Stops)
     curX = Stops(i).x;
     curY = Stops(i).y;
-    plot(curX,curY,'o','MarkerSize',2,...
+    plot(curX,curY,'o','MarkerSize',3,...
         'MarkerFaceColor',nodecolor,...
         'MarkerEdgeColor',nodecolor);
     hold on;
-%     text(curX,curY,Stops(i).name,'FontSize',8);
-%     hold on;
-    
+    if textOn
+        text(curX,curY,Stops(i).name,'FontSize',8);
+        hold on;
+    end 
 end
 
 set(gca, ...
