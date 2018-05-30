@@ -1,22 +1,27 @@
-function gtfsTables = loadGTFS()
-
-%% 
-% This script loads raw gtfs data from the specified data path
-% It only saves the columns (fields) that are necessary for later research
-% purposes. Matlab 'Table' is used to store the data.
-% --------------------
-% Ding Luo, 2018/02/01
+function gtfsTables = loadGtfsFiles(gtfsFolderPath)
+%%
+% Description
+% -----------
+% This script loads raw gtfs data from the specified data path.It only saves 
+% the columns (fields) that are necessary for later research purposes. 
+%
+% Parameters 
+% ----------
+% gtfsFolderPath: string
+%    path of the folder that contains all the GTFS csv files.
+% gtfsTables: table array
+%    simplified GTFS data saved in the MATLAB table array
 
 %%
-disp('selec the gtfs data folder');
-dataPath = uigetdir; % folder open
+% disp('selec the gtfs data folder');
+% dataPath = uigetdir; % folder open
 % file name making
-prompt = 'file name of the result:';
-dlg_title = 'GTFS file name input';
-defaultans = {'gtfs_'};
-num_lines = 1;
-answer = inputdlg(prompt,dlg_title,num_lines,defaultans);
-gtfsFileName = answer{1};
+% prompt = 'file name of the result:';
+% dlg_title = 'GTFS file name input';
+% defaultans = {'gtfs_'};
+% num_lines = 1;
+% answer = inputdlg(prompt,dlg_title,num_lines,defaultans);
+% gtfsFileName = answer{1};
 % tables and necessary fields
 gtfsTables = {...
     'calendar_dates',{'service_id','date','exception_type'};...
@@ -29,7 +34,7 @@ gtfsTables = {...
 for iTable = 1:length(gtfsTables)
     tableName = gtfsTables{iTable,1};
     neededFields = gtfsTables{iTable,2};   
-    gtfsTables{iTable,3} = readOneTable(dataPath,tableName,neededFields);
+    gtfsTables{iTable,3} = readOneTable(gtfsFolderPath,tableName,neededFields);
     disp([tableName ' loaded...']);
 end
 % save data

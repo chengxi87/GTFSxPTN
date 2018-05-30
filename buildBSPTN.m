@@ -1,9 +1,63 @@
-function [Routes,Stops,Links] = buildBottomScalePTN(gtfsTables,date,routeTypeList)
-% add path to the _lib
-str=pwd;
-index_dir=findstr(pwd,'\');
-str_temp=str(1:index_dir(end)-1);
-addpath([str_temp,'\_lib']);
+function [Routes,Stops,Links] = buildBSPTN(gtfsTables,date,routeTypeList)
+%%
+% Description
+% -----------
+% This function builds the so-called Bottom Scale Public Transport Network
+% (BSPTN) using the loaded GTFS data. It extracts the PTN based on the 
+% that a PTN consists of routes, stops and links. The generation is based 
+% on a one-day operational schedule.
+%
+% Parameters
+% ----------
+% gtfsTable: MATLAB 'table' 
+%   This variable is the output of the preceding function "loadGTFS.m"
+% date: string 'YYYYMMDD'
+%   This is to specify which day's timetable is going to be used to extract
+%   the PTN information
+% routeTypeList: int array
+%   This input corresponds to the GTFS standard on the 'routes'
+%   0 - Tram, Streetcar, Light rail. Any light rail or street level system 
+%       within a metropolitan area.
+%   1 - Subway, Metro. Any underground rail system within a metropolitan area.
+%   2 - Rail. Used for intercity or long-distance travel.
+%   3 - Bus. Used for short- and long-distance bus routes.
+%   4 - Ferry. Used for short- and long-distance boat service.
+%   5 - Cable car. Used for street-level cable cars where the cable runs 
+%       beneath the car.
+%   6 - Gondola, Suspended cable car. Typically used for aerial cable cars
+%       where the car is suspended from the cable.
+%   7 - Funicular. Any rail system designed for steep inclines.
+%
+% Returns
+% -------
+% Routes: struct
+%   routeID (string): unique ID for the route
+%   dirID (int): value of 1 or 0 to identify the direction of the route
+%   destinaiton (string) - destination name of this route
+%   type (int): route type id as specified above
+%   stops (int array): the sequence of stop IDs for this route. The detail
+%                      of the stop is contained in 'Stops'.
+%   links (int array): the sequence of link IDs for this route. The detail 
+%                      of the link is contained in 'Links'.
+% Stops: struct
+%   ID (int): unique index for each stop. At this scale, the ID is
+%             identical to the GTFS stop ID.
+%   name (string): stop name obtained from the GTFS data.
+%   x (float): longitude of the stop.
+%   y (float): latitude of the stop.
+%
+% Links: struct
+%   ID (int): unique index for each link. A link is defined by a pair of 
+%             stop IDs from the 'Stops'.
+%   oStop (int): source, or the orgin stop ID of the link.
+%   dStop (int): target, or the destination stop ID of the link.
+%   geometry (float array): shape of the link determined by an array of
+%                           coordinates. Extracted from the GTFS data.
+
+%% path handling
+curFolderPath = fileparts(which('buildBSPTN.m'));
+libPath = [curFolderPath,'\_lib'];
+addpath(libPath);
 %% Get all tables
 routesTable = getTable('routes',gtfsTables);
 tripsTable = getTable('trips',gtfsTables);
