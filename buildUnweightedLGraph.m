@@ -2,7 +2,7 @@ function [G,adj] = buildUnweightedLGraph(PTN)
 %%
 % Description
 % -----------
-% build an Unweighted L-space Graph based on the Public Transport Network.
+% build an directed unweighted L-space Graph based on the Public Transport Network.
 % Here the PTN can be either middle or top scale.
 % 
 % Parameters
@@ -12,9 +12,9 @@ function [G,adj] = buildUnweightedLGraph(PTN)
 %
 % Returns
 % -------
-% G: MATLAB Graph array
+% G: MATLAB Graph object
 %   The graph contains no self loops.
-% adj: mat
+% adj: matrix
 %   adjacency matrix for the L-space graph.        
 
 %%
