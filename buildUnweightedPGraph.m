@@ -1,4 +1,4 @@
-function [G,adj] = buildUnweightedPspaceGraph(PTN)
+function [G,adj] = buildUnweightedPGraph(PTN)
 
 nStops = length(PTN.Stops);
 adj = zeros(nStops,nStops);

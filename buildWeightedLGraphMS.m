@@ -12,10 +12,12 @@ function [G,adj] = buildWeightedLGraphMS(PTN,LTT,SF,hourList)
 % PTN: struct
 %   the target middle-scale PTN 
 % LTT: struct
-%   Link Travel Time. 
+%   Link Travel Time 
 % SF: struct
-% 
-% hourList
+%   Service Frequency
+% hourList: int array
+%   a list of hours showing the period of time of the day
+%
 % Returns
 % -------
 % G: MATLAB Graph object
