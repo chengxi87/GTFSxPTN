@@ -13,3 +13,8 @@ routeTypeList = [0,1,3];
 date = '20180320';
 % generate the bottom-scale ptn
 [BSPTN.Routes,BSPTN.Stops,BSPTN.Links] = buildBSPTN(gtfsTables,date,routeTypeList);
+
+%% viz
+
+plotNetworkWithGeo(BSPTN.Links,BSPTN.Stops)
+
