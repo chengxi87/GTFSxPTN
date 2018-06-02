@@ -1,6 +1,6 @@
-# GTFS2PTN
+# GTFSxPTN
 
-``GTFS2PTN`` is a Matlab tool for constructing a number of Public Transport Network (PTN) representations on different scales and different topological forms using the [General Transit Feed Specification (GTFS)](https://developers.google.com/transit/gtfs/). The tool is aimed for research and education on PTNs, such as topological and spatial analyses. 
+``GTFSxPTN`` is a Matlab tool for constructing a number of Public Transport Network (PTN) representations on different scales and different topological forms using the [General Transit Feed Specification (GTFS)](https://developers.google.com/transit/gtfs/). The tool is aimed for research and education on PTNs, such as topological and spatial analyses. 
 
 ## Feature
 
