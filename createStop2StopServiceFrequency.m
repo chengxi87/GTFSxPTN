@@ -1,4 +1,17 @@
 function S = createStop2StopServiceFrequency(lineIdList,date,prefix)
+%%
+% Description
+% -----------
+
+% 
+% Parameters
+% ----------
+
+%
+% Returns
+% -------
+
+%%
 % open file path
 filepath = uigetdir(pwd,'Select the output folder of GTFS timetable');
 

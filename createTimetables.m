@@ -1,5 +1,10 @@
 function createTimetables()
+%%
+% Description
+% -----------
+% compute sum-normalized centrality measures of the Weighted P-space Graph
 
+%%
 str=pwd;
 index_dir=findstr(str,'\');
 str_temp=str(1:index_dir(end)-1);

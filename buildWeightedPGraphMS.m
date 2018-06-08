@@ -28,11 +28,16 @@ adj = zeros(nStops,nStops);
 N = adj;
 
 for i = 1:length(SF)
-    o = PTN.StopIdxTable([PTN.StopIdxTable.stopIdBS]== SF(i).fromStopID).stopIdMS;
-    d = PTN.StopIdxTable([PTN.StopIdxTable.stopIdBS]== SF(i).toStopID).stopIdMS;
-    for hour = hourlist
-        rowH = find(SF(i).hourlyAvg(:,1) == hour);
-        N(o,d) = N(o,d) + SF(i).hourlyAvg(rowH,2);
+    try
+        o = PTN.StopIdxTable([PTN.StopIdxTable.stopIdBS]== SF(i).fromStopID).stopIdMS;
+        d = PTN.StopIdxTable([PTN.StopIdxTable.stopIdBS]== SF(i).toStopID).stopIdMS;
+        for hour = hourList
+            rowIdx = find(SF(i).hourlyAvg(:,1) == hour);
+            N(o,d) = N(o,d) + SF(i).hourlyAvg(rowIdx,2);
+        end
+    catch
+        disp(['stop pair (', int2str(SF(i).fromStopID), ',',...
+            int2str(SF(i).toStopID), ') was not found in the current PTN.']);
     end
 end
 adj = round(0.5 * (length(hourList)*60)./N);
